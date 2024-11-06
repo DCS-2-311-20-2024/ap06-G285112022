@@ -121,7 +121,7 @@ function init() {
       const seat = chair.clone();
       seat.position.set(
         (param.w + param.gapX) * (c - (param.nCol-1)/2),
-        (param.gapZ) * r - 2,
+        (param.gapY) * r - 2,
         (param.d + param.gapZ) * (r + 5)
       )
       seats.add(seat);
