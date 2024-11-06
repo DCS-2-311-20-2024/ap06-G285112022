@@ -91,7 +91,7 @@ function init() {
 
 
   // カメラ制御
-  const orbitControls = new OrbitControls(camera, renderer.domElement);
+  const orbitControls = new OrbitControls(camera, cssRenderer.domElement);
   orbitControls.enableDumping = true;
   orbitControls.minAzimuthAngle = -Math.PI/2;
   orbitControls.maxAzimuthAngle = Math.PI/2;
@@ -107,7 +107,6 @@ function init() {
       [ silverMaterial, silverMaterial, silverMaterial,
         silverMaterial, blackMaterial, silverMaterial ]
     );
-    face.castShadow = true;
     display.add(face);
     // スタンド台
     const standBase = new THREE.Mesh(
@@ -134,6 +133,10 @@ function init() {
 
     // 影の設定
   }
+  display.children.forEach((child) => {
+    child.castShadow= true;
+    child.receiveShadow = true;
+  });
   scene.add(display);
 
   // デスク
@@ -163,9 +166,9 @@ function init() {
   // サイズ変更
   window.addEventListener("resize", () => {
     canvasHeight = window.innerHeight-nameHeight;
-    canvaswidth = window.innerWidth;
+    canvasWidth = window.innerWidth;
     camera.aspect = canvasWidth / canvasHeight;
-    camera.updateProgectionMatrix();
+    camera.updateProjectionMatrix();
     renderer.setSize(canvasWidth, canvasHeight);
     cssRenderer.setSize(canvasWidth, canvasHeight);
 
